@@ -1,10 +1,12 @@
 from ast import In
 from asyncore import read, write
+from cgitb import html
 import filecmp
 import fileinput
 from importlib.resources import open_text
 from ntpath import altsep
 from optparse import TitledHelpFormatter
+from os import link
 from statistics import mode
 from tkinter import image_names
 from typing import Any, Generic
@@ -31,7 +33,6 @@ class The_lord_of_ring(models.Model):
     pub_date = models.DateField('date published')
 
 
-
 class The_Chronicles_of_Narnia(models.Model):
  Author = models.ForeignKey(Author,on_delete=models.CASCADE)
  Title = models.CharField(max_length=40)
@@ -50,4 +51,4 @@ class Hunger_Game(models.Model):
     Author = models.ForeignKey(Author, on_delete=models.CASCADE)
     Title = models.CharField(max_length=65)
     pub_date = models.DateField(' date published')
-
+    
