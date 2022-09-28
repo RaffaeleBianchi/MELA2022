@@ -13,4 +13,3 @@ urlpatterns = [
     # ex: /polls/5/vote/
     ]
 
-
