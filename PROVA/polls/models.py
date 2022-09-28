@@ -12,8 +12,11 @@ from tkinter import image_names
 from typing import Any, Generic
 from unittest.util import _MAX_LENGTH
 from urllib import response
-from django.db import models
 from django.forms import TextInput
+from django.db import models
+from django.utils import timezone
+from tinymce.models import HTMLField
+
 
 # Create your models here.
 
@@ -52,3 +55,9 @@ class Hunger_Game(models.Model):
     Title = models.CharField(max_length=65)
     pub_date = models.DateField(' date published')
     
+
+# django_project/main/models.py
+
+class Article(models.Model):
+    content = HTMLField(blank=True, default="")
+    notes = HTMLField(blank=True, default="")

@@ -1,36 +1,5 @@
-# django_project/users/views.py
-from django.shortcuts import render, redirect
-from django.contrib.auth import get_user_model, login
-from .form import userRegistrationForm
-
-# Create your views here.
-def register(request):
-    # Logged in user can't register a new account
-    if request.user.is_authenticated:
-        return redirect("/")
-
-    if request.method == 'POST':
-        form = userRegistrationForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            login(request, user)
-            return redirect('/')
-        else:
-            for error in list(form.errors.values()):
-                print(request, error)
-
-    else:
-        form = userRegistrationForm()
-
-    return render(
-        request = request,
-        template_name = "register.html",
-        context={"form":form}
-        )
-        
 #from pipes import templates
-from django.shortcuts import render
-
+from django.shortcuts import render, redirect
 # Create your views here.
 from django.http import HttpResponse
 import datetime 
@@ -55,3 +24,5 @@ def results(request, question_id):
 def vote(request, question_id):
     return HttpResponse("You're voting on question %s." % question_id)
 
+# django_project/users/views.py
+# Create your views here.
