@@ -6,24 +6,23 @@ from captcha.fields import ReCaptchaField
 from captcha.widgets import ReCaptchaV2Checkbox
 
 
-class userRegistrationForm(UserCreationForm):
+class UserRegistrationForm(UserCreationForm):
     email = forms.EmailField(
         help_text='A valid email address, please.', required=True)
 
 
-class Meta:
-    model = get_user_model()
-    fields = ['first_name', 'last_name', 'username',
-              'email', 'password1', 'password2']
+    class Meta:
+        model = get_user_model()
+        fields = ['first_name', 'last_name', 'username','email', 'password1', 'password2'] 
 
 
-def save(self, commit=True):
-    user = super(userRegistrationForm, self).save(commit=False)
-    user.email = self.cleaned_data['email']
-    if commit:
-        user.save()
+    def save(self, commit=True):
+        user = super(UserRegistrationForm, self).save(commit=False)
+        user.email = self.cleaned_data['email']
+        if commit:
+            user.save()
 
-    return user
+        return user
 
 class UserLoginForm(AuthenticationForm):
     def __init__(self, *args, **kwargs):
